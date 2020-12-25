@@ -1,3 +1,43 @@
-PODFILE CHECKSUM: 9e1b0701551523b1cf18d580e96dace40f5eef60
+PODS:
+  - PKHUD (5.3.0)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
+  - RxTest (5.1.1):
+    - RxSwift (~> 5)
+  - SwiftFormat/CLI (0.47.9)
+  - SwiftLint (0.42.0)
+
+DEPENDENCIES:
+  - PKHUD (~> 5.0)
+  - RxCocoa (~> 5)
+  - RxSwift (~> 5)
+  - RxTest (~> 5)
+  - SwiftFormat/CLI
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - PKHUD
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - RxTest
+    - SwiftFormat
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  RxTest: 711632d5644dffbeb62c936a521b5b008a1e1faa
+  SwiftFormat: 1ebb84471285e3add283f04ca2a1c9fb82b081f0
+  SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
+
+PODFILE CHECKSUM: 189aad167759b34746622ce63ccb2b78d09b6ebf
 
 COCOAPODS: 1.9.3
