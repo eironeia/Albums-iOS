@@ -1,2 +1,8 @@
 excluded:
   - ./Pods
+
+identifier_name:
+  min_length:
+    error: 3
+  excluded:
+    - id

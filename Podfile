@@ -14,12 +14,7 @@ target 'Albums' do
 
   target 'AlbumsTests' do
     inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'AlbumsUITests' do
-    # Pods for testing
     pod 'RxTest', '~> 5'
   end
-
+  
 end
