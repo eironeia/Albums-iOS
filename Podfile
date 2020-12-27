@@ -11,6 +11,7 @@ target 'Albums' do
   pod 'PKHUD', '~> 5.0'
   pod 'SwiftLint'
   pod 'SwiftFormat/CLI'
+  pod 'Moya/RxSwift', '~> 14.0'
 
   target 'AlbumsTests' do
     inherit! :search_paths
