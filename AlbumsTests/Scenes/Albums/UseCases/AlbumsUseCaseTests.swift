@@ -1,14 +1,13 @@
 import XCTest
 import RxSwift
 import RxTest
-import Moya
 
 @testable import Albums
 
-final class AlbumsProviderTests: XCTestCase {
+final class AlbumsUseCaseTests: XCTestCase {
     var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
-    var sut: AlbumsProvider!
+    var sut: AlbumsUseCase!
 
     override func setUp() {
         super.setUp()
@@ -24,20 +23,18 @@ final class AlbumsProviderTests: XCTestCase {
         super.tearDown()
     }
 
-    func test_getAlbumsProvider() {
+    func test_getAlbumsUseCase() {
         let expectation = self.expectation(description: "Get albums called")
         sut
-            .getAlbums(page: 1)
+            .getAlbums(page: 0)
             .verifySuccessfulRequest(expectation: expectation)
             .disposed(by: disposeBag)
         waitForExpectations(timeout: 1)
     }
 }
 
-private extension AlbumsProviderTests {
-    func makeSUT() -> AlbumsProvider {
-        return AlbumsProvider(
-            provider: .init(stubClosure: MoyaProvider<EndpointsAPI>.immediatelyStub)
-        )
+private extension AlbumsUseCaseTests {
+    func makeSUT() -> AlbumsUseCase {
+        return AlbumsUseCase(albumsProvider: MockAlbumsProvider())
     }
 }

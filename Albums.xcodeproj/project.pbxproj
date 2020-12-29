@@ -22,7 +22,10 @@
 		FA56E4782599194F009ECC78 /* Rx+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56E4772599194F009ECC78 /* Rx+Extension.swift */; };
 		FA56E480259919BB009ECC78 /* Rx+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56E47F259919BB009ECC78 /* Rx+Extensions.swift */; };
 		FA89667E259B1F7100481EC1 /* AlbumsJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = FA89667D259B1F7100481EC1 /* AlbumsJSON.json */; };
-		FADDFDC12596B0930094690D /* AlbumProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFDC02596B0930094690D /* AlbumProvider.swift */; };
+		FA896685259B211500481EC1 /* AlbumsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA896684259B211500481EC1 /* AlbumsUseCase.swift */; };
+		FA89668E259B9F5E00481EC1 /* AlbumsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89668D259B9F5E00481EC1 /* AlbumsUseCaseTests.swift */; };
+		FA896695259B9FB700481EC1 /* MockAlbumsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA896694259B9FB700481EC1 /* MockAlbumsProvider.swift */; };
+		FADDFDC12596B0930094690D /* AlbumsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFDC02596B0930094690D /* AlbumsProvider.swift */; };
 		FADDFDC62596B2990094690D /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FADDFDC52596B2990094690D /* RxTest.framework */; };
 		FADDFDD92596B2F80094690D /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFDD82596B2F80094690D /* Album.swift */; };
 /* End PBXBuildFile section */
@@ -60,7 +63,10 @@
 		FA56E4772599194F009ECC78 /* Rx+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Extension.swift"; sourceTree = "<group>"; };
 		FA56E47F259919BB009ECC78 /* Rx+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Extensions.swift"; sourceTree = "<group>"; };
 		FA89667D259B1F7100481EC1 /* AlbumsJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlbumsJSON.json; sourceTree = "<group>"; };
-		FADDFDC02596B0930094690D /* AlbumProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumProvider.swift; sourceTree = "<group>"; };
+		FA896684259B211500481EC1 /* AlbumsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsUseCase.swift; sourceTree = "<group>"; };
+		FA89668D259B9F5E00481EC1 /* AlbumsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsUseCaseTests.swift; sourceTree = "<group>"; };
+		FA896694259B9FB700481EC1 /* MockAlbumsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAlbumsProvider.swift; sourceTree = "<group>"; };
+		FADDFDC02596B0930094690D /* AlbumsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsProvider.swift; sourceTree = "<group>"; };
 		FADDFDC52596B2990094690D /* RxTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADDFDD82596B2F80094690D /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		FE953F69093C91274F77E8CB /* Pods-AlbumsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlbumsTests.debug.xcconfig"; path = "Target Support Files/Pods-AlbumsTests/Pods-AlbumsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +194,7 @@
 			children = (
 				FADDFDD72596B2F00094690D /* Models */,
 				FADDFDBF2596B0880094690D /* Providers */,
+				FA896681259B20D500481EC1 /* UseCases */,
 			);
 			path = Albums;
 			sourceTree = "<group>";
@@ -210,7 +217,9 @@
 		FA56E48625991C33009ECC78 /* Albums */ = {
 			isa = PBXGroup;
 			children = (
+				FA896693259B9FA700481EC1 /* Mocks */,
 				FA56E48825991C4B009ECC78 /* Providers */,
+				FA89668C259B9F4A00481EC1 /* UseCases */,
 			);
 			path = Albums;
 			sourceTree = "<group>";
@@ -231,10 +240,34 @@
 			path = Providers;
 			sourceTree = "<group>";
 		};
+		FA896681259B20D500481EC1 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				FA896684259B211500481EC1 /* AlbumsUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		FA89668C259B9F4A00481EC1 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				FA89668D259B9F5E00481EC1 /* AlbumsUseCaseTests.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		FA896693259B9FA700481EC1 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				FA896694259B9FB700481EC1 /* MockAlbumsProvider.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		FADDFDBF2596B0880094690D /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				FADDFDC02596B0930094690D /* AlbumProvider.swift */,
+				FADDFDC02596B0930094690D /* AlbumsProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -473,9 +506,10 @@
 			files = (
 				FA25C8812596648700F8F903 /* ViewController.swift in Sources */,
 				FA3F7F8D259B131F0029F6F8 /* EndpointsAPI.swift in Sources */,
-				FADDFDC12596B0930094690D /* AlbumProvider.swift in Sources */,
+				FADDFDC12596B0930094690D /* AlbumsProvider.swift in Sources */,
 				FA25C87D2596648700F8F903 /* AppDelegate.swift in Sources */,
 				FA56E480259919BB009ECC78 /* Rx+Extensions.swift in Sources */,
+				FA896685259B211500481EC1 /* AlbumsUseCase.swift in Sources */,
 				FA25C87F2596648700F8F903 /* SceneDelegate.swift in Sources */,
 				FA3F7F89259B118A0029F6F8 /* JSONDataParsingHelper.swift in Sources */,
 				FA25C8872596648700F8F903 /* Albums.xcdatamodeld in Sources */,
@@ -487,8 +521,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA896695259B9FB700481EC1 /* MockAlbumsProvider.swift in Sources */,
 				FA25C8972596648800F8F903 /* AlbumsProviderTests.swift in Sources */,
 				FA56E4782599194F009ECC78 /* Rx+Extension.swift in Sources */,
+				FA89668E259B9F5E00481EC1 /* AlbumsUseCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
