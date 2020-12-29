@@ -17,8 +17,11 @@
 		FA25C8892596648800F8F903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA25C8882596648800F8F903 /* Assets.xcassets */; };
 		FA25C88C2596648800F8F903 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA25C88A2596648800F8F903 /* LaunchScreen.storyboard */; };
 		FA25C8972596648800F8F903 /* AlbumsProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25C8962596648800F8F903 /* AlbumsProviderTests.swift */; };
+		FA3F7F89259B118A0029F6F8 /* JSONDataParsingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F7F88259B118A0029F6F8 /* JSONDataParsingHelper.swift */; };
+		FA3F7F8D259B131F0029F6F8 /* EndpointsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F7F8C259B131F0029F6F8 /* EndpointsAPI.swift */; };
 		FA56E4782599194F009ECC78 /* Rx+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56E4772599194F009ECC78 /* Rx+Extension.swift */; };
 		FA56E480259919BB009ECC78 /* Rx+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56E47F259919BB009ECC78 /* Rx+Extensions.swift */; };
+		FA89667E259B1F7100481EC1 /* AlbumsJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = FA89667D259B1F7100481EC1 /* AlbumsJSON.json */; };
 		FADDFDC12596B0930094690D /* AlbumProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFDC02596B0930094690D /* AlbumProvider.swift */; };
 		FADDFDC62596B2990094690D /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FADDFDC52596B2990094690D /* RxTest.framework */; };
 		FADDFDD92596B2F80094690D /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFDD82596B2F80094690D /* Album.swift */; };
@@ -52,8 +55,11 @@
 		FA25C8922596648800F8F903 /* AlbumsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlbumsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA25C8962596648800F8F903 /* AlbumsProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsProviderTests.swift; sourceTree = "<group>"; };
 		FA25C8982596648800F8F903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA3F7F88259B118A0029F6F8 /* JSONDataParsingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDataParsingHelper.swift; sourceTree = "<group>"; };
+		FA3F7F8C259B131F0029F6F8 /* EndpointsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointsAPI.swift; sourceTree = "<group>"; };
 		FA56E4772599194F009ECC78 /* Rx+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Extension.swift"; sourceTree = "<group>"; };
 		FA56E47F259919BB009ECC78 /* Rx+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Extensions.swift"; sourceTree = "<group>"; };
+		FA89667D259B1F7100481EC1 /* AlbumsJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlbumsJSON.json; sourceTree = "<group>"; };
 		FADDFDC02596B0930094690D /* AlbumProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumProvider.swift; sourceTree = "<group>"; };
 		FADDFDC52596B2990094690D /* RxTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADDFDD82596B2F80094690D /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
@@ -125,6 +131,7 @@
 		FA25C87B2596648700F8F903 /* Albums */ = {
 			isa = PBXGroup;
 			children = (
+				FA3F7F80259B10770029F6F8 /* Network */,
 				FA56E47E259919B0009ECC78 /* Extensions */,
 				FA56E47D259919A6009ECC78 /* Albums */,
 				FA25C87C2596648700F8F903 /* AppDelegate.swift */,
@@ -148,6 +155,24 @@
 				FA25C8982596648800F8F903 /* Info.plist */,
 			);
 			path = AlbumsTests;
+			sourceTree = "<group>";
+		};
+		FA3F7F80259B10770029F6F8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FA3F7F81259B10820029F6F8 /* API Mocks */,
+				FA3F7F88259B118A0029F6F8 /* JSONDataParsingHelper.swift */,
+				FA3F7F8C259B131F0029F6F8 /* EndpointsAPI.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		FA3F7F81259B10820029F6F8 /* API Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				FA89667D259B1F7100481EC1 /* AlbumsJSON.json */,
+			);
+			path = "API Mocks";
 			sourceTree = "<group>";
 		};
 		FA56E4762599193D009ECC78 /* Extensions */ = {
@@ -309,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA25C88C2596648800F8F903 /* LaunchScreen.storyboard in Resources */,
+				FA89667E259B1F7100481EC1 /* AlbumsJSON.json in Resources */,
 				FA25C8892596648800F8F903 /* Assets.xcassets in Resources */,
 				FA25C8842596648700F8F903 /* Main.storyboard in Resources */,
 			);
@@ -446,10 +472,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA25C8812596648700F8F903 /* ViewController.swift in Sources */,
+				FA3F7F8D259B131F0029F6F8 /* EndpointsAPI.swift in Sources */,
 				FADDFDC12596B0930094690D /* AlbumProvider.swift in Sources */,
 				FA25C87D2596648700F8F903 /* AppDelegate.swift in Sources */,
 				FA56E480259919BB009ECC78 /* Rx+Extensions.swift in Sources */,
 				FA25C87F2596648700F8F903 /* SceneDelegate.swift in Sources */,
+				FA3F7F89259B118A0029F6F8 /* JSONDataParsingHelper.swift in Sources */,
 				FA25C8872596648700F8F903 /* Albums.xcdatamodeld in Sources */,
 				FADDFDD92596B2F80094690D /* Album.swift in Sources */,
 			);

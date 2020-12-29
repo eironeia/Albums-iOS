@@ -1,14 +1,9 @@
 import XCTest
 import RxSwift
 import RxTest
+import Moya
 
 @testable import Albums
-
-struct MockNetworkProvider: NetworkProviderInterface {
-    func request(endpoint: Endpoint) {
-
-    }
-}
 
 final class AlbumsProviderTests: XCTestCase {
     var scheduler: TestScheduler!
@@ -30,7 +25,7 @@ final class AlbumsProviderTests: XCTestCase {
     func test_getAlbumProvider() {
         let expectation = self.expectation(description: "Get album called")
         sut
-            .getAlbums()
+            .getAlbums(page: 1)
             .verifySuccessfulRequest(expectation: expectation)
             .disposed(by: disposeBag)
         waitForExpectations(timeout: 1)
@@ -39,7 +34,8 @@ final class AlbumsProviderTests: XCTestCase {
 
 private extension AlbumsProviderTests {
     func makeSUT() -> AlbumsProvider {
-        let networkProvider = MockNetworkProvider()
-        return AlbumsProvider(networkProvider: networkProvider)
+        return AlbumsProvider(
+            provider: .init(stubClosure: MoyaProvider<EndpointsAPI>.immediatelyStub)
+        )
     }
 }
