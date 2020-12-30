@@ -6,19 +6,16 @@ import Moya
 @testable import Albums
 
 final class AlbumsProviderTests: XCTestCase {
-    var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
     var sut: AlbumsProvider!
 
     override func setUp() {
         super.setUp()
-        scheduler = TestScheduler(initialClock: 0)
         disposeBag = DisposeBag()
         sut = makeSUT()
     }
 
     override func tearDown() {
-        scheduler = nil
         disposeBag = nil
         sut = nil
         super.tearDown()
