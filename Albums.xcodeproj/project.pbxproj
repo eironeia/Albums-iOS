@@ -22,6 +22,8 @@
 		FA5086F0259BA30F00535DCE /* AlbumsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5086EF259BA30F00535DCE /* AlbumsViewModelTests.swift */; };
 		FA5086F6259BC51E00535DCE /* MockAlbumsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5086F5259BC51E00535DCE /* MockAlbumsUseCase.swift */; };
 		FA5086FB259BDC7300535DCE /* AlbumUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5086FA259BDC7300535DCE /* AlbumUIModel.swift */; };
+		FA5086FF259D081200535DCE /* LocalAlbumsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5086FE259D081200535DCE /* LocalAlbumsProvider.swift */; };
+		FA508703259D084C00535DCE /* MockLocalAlbumsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA508702259D084C00535DCE /* MockLocalAlbumsProvider.swift */; };
 		FA56E4782599194F009ECC78 /* Rx+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56E4772599194F009ECC78 /* Rx+Extension.swift */; };
 		FA56E480259919BB009ECC78 /* Rx+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56E47F259919BB009ECC78 /* Rx+Extensions.swift */; };
 		FA89667E259B1F7100481EC1 /* AlbumsJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = FA89667D259B1F7100481EC1 /* AlbumsJSON.json */; };
@@ -67,6 +69,8 @@
 		FA5086EF259BA30F00535DCE /* AlbumsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewModelTests.swift; sourceTree = "<group>"; };
 		FA5086F5259BC51E00535DCE /* MockAlbumsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAlbumsUseCase.swift; sourceTree = "<group>"; };
 		FA5086FA259BDC7300535DCE /* AlbumUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumUIModel.swift; sourceTree = "<group>"; };
+		FA5086FE259D081200535DCE /* LocalAlbumsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAlbumsProvider.swift; sourceTree = "<group>"; };
+		FA508702259D084C00535DCE /* MockLocalAlbumsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocalAlbumsProvider.swift; sourceTree = "<group>"; };
 		FA56E4772599194F009ECC78 /* Rx+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Extension.swift"; sourceTree = "<group>"; };
 		FA56E47F259919BB009ECC78 /* Rx+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Extensions.swift"; sourceTree = "<group>"; };
 		FA89667D259B1F7100481EC1 /* AlbumsJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlbumsJSON.json; sourceTree = "<group>"; };
@@ -288,6 +292,7 @@
 			children = (
 				FA896694259B9FB700481EC1 /* MockAlbumsProvider.swift */,
 				FA5086F5259BC51E00535DCE /* MockAlbumsUseCase.swift */,
+				FA508702259D084C00535DCE /* MockLocalAlbumsProvider.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				FADDFDC02596B0930094690D /* AlbumsProvider.swift */,
+				FA5086FE259D081200535DCE /* LocalAlbumsProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -543,6 +549,7 @@
 				FA25C8812596648700F8F903 /* ViewController.swift in Sources */,
 				FA3F7F8D259B131F0029F6F8 /* EndpointsAPI.swift in Sources */,
 				FA89669C259BA10D00481EC1 /* AlbumsViewModel.swift in Sources */,
+				FA5086FF259D081200535DCE /* LocalAlbumsProvider.swift in Sources */,
 				FADDFDC12596B0930094690D /* AlbumsProvider.swift in Sources */,
 				FA25C87D2596648700F8F903 /* AppDelegate.swift in Sources */,
 				FA5086FB259BDC7300535DCE /* AlbumUIModel.swift in Sources */,
@@ -560,6 +567,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA896695259B9FB700481EC1 /* MockAlbumsProvider.swift in Sources */,
+				FA508703259D084C00535DCE /* MockLocalAlbumsProvider.swift in Sources */,
 				FA25C8972596648800F8F903 /* AlbumsProviderTests.swift in Sources */,
 				FA56E4782599194F009ECC78 /* Rx+Extension.swift in Sources */,
 				FA5086F0259BA30F00535DCE /* AlbumsViewModelTests.swift in Sources */,

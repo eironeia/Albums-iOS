@@ -7,9 +7,13 @@ protocol AlbumsUseCaseInterface {
 
 struct AlbumsUseCase {
     let albumsProvider: AlbumsProviderInterface
-//    let localAlbumsProvider: AlbumsProviderInterface
+    let localAlbumsProvider: LocalAlbumsProviderInterface
 
     func getAlbums(page: UInt) -> Single<[Album]> {
-        albumsProvider.getAlbums(page: page)
+        if let localAlbums = localAlbumsProvider.getAlbums(page: page) {
+            return .just(localAlbums)
+        } else {
+            return albumsProvider.getAlbums(page: page)
+        }
     }
 }

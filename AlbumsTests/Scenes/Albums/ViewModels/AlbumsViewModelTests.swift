@@ -42,19 +42,15 @@ final class AlbumsViewModelTests: XCTestCase {
     }
 
     func test_whenLoadMoreEvent_thenHandleStates() {
-        subscribeScheduler(
-            with: [
-                .next(20, .loadMore(page: 2))
-            ]
-        )
+        subscribeScheduler(with: [.next(10, .loadMore(page: 2))])
         subscribeEvents()
 
         XCTAssertEqual(
             stateObserver.events,
             [
-                .next(20, .isLoading(true)),
-                .next(20, .isLoading(false)),
-                .next(20, .albums([]))
+                .next(10, .isLoading(true)),
+                .next(10, .isLoading(false)),
+                .next(10, .albums([]))
             ]
         )
     }

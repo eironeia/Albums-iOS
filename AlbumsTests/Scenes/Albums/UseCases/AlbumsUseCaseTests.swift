@@ -5,13 +5,20 @@ import RxTest
 @testable import Albums
 
 final class AlbumsUseCaseTests: XCTestCase {
+    var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
+    var mockAlbumsProvider: MockAlbumsProvider!
+    var mockLocalAlbumsProvider: MockLocalAlbumsProvider!
+    var resultsObserver: TestableObserver<[Album]>!
     var sut: AlbumsUseCase!
 
     override func setUp() {
         super.setUp()
+        mockAlbumsProvider = MockAlbumsProvider()
+        mockLocalAlbumsProvider = MockLocalAlbumsProvider()
+        scheduler = TestScheduler(initialClock: 10)
+        resultsObserver = scheduler.createObserver([Album].self)
         disposeBag = DisposeBag()
-        sut = makeSUT()
     }
 
     override func tearDown() {
@@ -20,18 +27,62 @@ final class AlbumsUseCaseTests: XCTestCase {
         super.tearDown()
     }
 
-    func test_getAlbumsUseCase() {
-        let expectation = self.expectation(description: "Get albums called")
-        sut
-            .getAlbums(page: 0)
-            .verifySuccessfulRequest(expectation: expectation)
-            .disposed(by: disposeBag)
-        waitForExpectations(timeout: 1)
+    func test_getAlbumsUseCase_withoutStoredData() {
+        let mockAlbum = Album(
+            userId: 1,
+            id: 1,
+            title: "Title"
+        )
+
+        mockAlbumsProvider.getAlbumsResponse = [mockAlbum]
+
+        sut = makeSUT()
+
+        subscribeEvents()
+        XCTAssertEqual(
+            resultsObserver.events,
+            [
+                .next(10, [mockAlbum]),
+                .completed(10)
+            ]
+        )
+    }
+
+    func test_getAlbumsUseCase_withStoredData() {
+        let mockLocalAlbum = Album(
+            userId: 1,
+            id: 1,
+            title: "Title"
+        )
+
+        mockLocalAlbumsProvider.getAlbumsResponse = [mockLocalAlbum]
+
+        sut = makeSUT()
+        subscribeEvents()
+
+        XCTAssertEqual(
+            resultsObserver.events,
+            [
+                .next(10, [mockLocalAlbum]),
+                .completed(10)
+            ]
+        )
     }
 }
 
 private extension AlbumsUseCaseTests {
     func makeSUT() -> AlbumsUseCase {
-        return AlbumsUseCase(albumsProvider: MockAlbumsProvider())
+        AlbumsUseCase(
+            albumsProvider: mockAlbumsProvider,
+            localAlbumsProvider: mockLocalAlbumsProvider
+        )
+    }
+
+    func subscribeEvents() {
+        sut
+            .getAlbums(page: 0)
+            .asObservable()
+            .subscribe(resultsObserver)
+            .disposed(by: disposeBag)
     }
 }

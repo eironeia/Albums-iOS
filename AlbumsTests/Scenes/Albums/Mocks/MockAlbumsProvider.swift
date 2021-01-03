@@ -2,8 +2,11 @@ import RxSwift
 
 @testable import Albums
 
-struct MockAlbumsProvider: AlbumsProviderInterface {
+final class MockAlbumsProvider: AlbumsProviderInterface {
+    var getAlbumsResponse: [Album]!
+    var getAlbumsTimesCalled: UInt = 0
     func getAlbums(page: UInt) -> Single<[Album]> {
-        return .just([])
+        getAlbumsTimesCalled += 1
+        return .just(getAlbumsResponse)
     }
 }

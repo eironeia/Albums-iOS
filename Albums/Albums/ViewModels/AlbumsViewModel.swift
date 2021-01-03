@@ -25,7 +25,7 @@ struct AlbumsViewModel {
     let albumsUseCase: AlbumsUseCaseInterface
 
     // MARK: - Stored properties
-    let firstPage: UInt = 1
+    let firstPageIndex: UInt = 1
 
     // MARK: - Subject
     let isLoadingSubject = PublishSubject<Bool>()
@@ -35,7 +35,7 @@ struct AlbumsViewModel {
             .flatMapLatest { event -> Observable<State> in
                 switch event {
                 case .start:
-                    return getAlbumsState(page: 1)
+                    return getAlbumsState(page: firstPageIndex)
                 case let .loadMore(page):
                     return getAlbumsState(page: page)
                 }
