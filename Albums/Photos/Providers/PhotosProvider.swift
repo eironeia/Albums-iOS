@@ -3,7 +3,7 @@ import RxSwift
 import Moya
 
 protocol PhotosProviderInterface {
-    func getPhotos(page: UInt, albumId: Int) -> Single<[Album]>
+    func getPhotos(page: UInt, albumId: Int) -> Single<[Photo]>
 }
 
 struct PhotosProvider: PhotosProviderInterface {
@@ -13,11 +13,12 @@ struct PhotosProvider: PhotosProviderInterface {
         self.provider = provider
     }
 
-    func getAlbums(page: UInt) -> Single<[Album]> {
+    func getPhotos(page: UInt, albumId: Int) -> Single<[Photo]> {
         provider
             .rx
-            .request(.getAlbums(page: page))
+            .request(.getPhotos(page: page, albumId: albumId))
+            .debug()
             .filterSuccessfulStatusCodes()
-            .map([Album].self)
+            .map([Photo].self)
     }
 }

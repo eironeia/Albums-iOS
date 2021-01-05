@@ -25,19 +25,15 @@ extension EndpointsAPI: TargetType {
     var sampleData: Data {
         switch self {
         case .getAlbums: return JSONDataParsingHelper().getData(from: "AlbumsJSON")
-        case .getPhotos:
-            #warning("fix")
-            return JSONDataParsingHelper().getData(from: "")
+        case .getPhotos: return JSONDataParsingHelper().getData(from: "PhotosJSON")
         }
     }
 
     var task: Task {
         let encoding: ParameterEncoding
         switch method {
-        case .get:
-            encoding = URLEncoding.default
-        default:
-            encoding = JSONEncoding.default
+        case .get: encoding = URLEncoding.default
+        default: encoding = JSONEncoding.default
         }
 
         if let requestParameters = parameters {
