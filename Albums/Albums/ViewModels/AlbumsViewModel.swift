@@ -2,6 +2,7 @@ import RxSwift
 import Foundation
 
 protocol AlbumsViewModelInterface {
+    var firstPageIndex: UInt { get }
     func transform(
         event: Observable<AlbumsViewModel.Event>
     ) -> Observable<AlbumsViewModel.State>
@@ -16,11 +17,13 @@ extension AlbumsViewModel {
     enum State: Equatable {
         case isLoading(Bool)
         case albums([AlbumUIModel])
+        case nextAlbumsPage([AlbumUIModel])
+        case noMorePages
         case idle
     }
 }
 
-struct AlbumsViewModel {
+struct AlbumsViewModel: AlbumsViewModelInterface {
     // MARK: - Dependencies
     let albumsUseCase: AlbumsUseCaseInterface
 
@@ -58,6 +61,11 @@ private extension AlbumsViewModel {
             .asObservable()
             .stopLoading(loadingSubject: isLoadingSubject)
             .map { $0.map(AlbumUIModel.init) }
-            .map(AlbumsViewModel.State.albums)
+            .map { albumsUIModel -> State in
+                guard !albumsUIModel.isEmpty else { return .noMorePages }
+                return page == firstPageIndex
+                    ? .albums(albumsUIModel)
+                    : .nextAlbumsPage(albumsUIModel)
+            }
     }
 }

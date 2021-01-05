@@ -5,7 +5,7 @@ protocol AlbumsUseCaseInterface {
     func getAlbums(page: UInt) -> Single<[Album]>
 }
 
-struct AlbumsUseCase {
+struct AlbumsUseCase: AlbumsUseCaseInterface {
     let albumsProvider: AlbumsProviderInterface
     let localAlbumsProvider: LocalAlbumsProviderInterface
 
