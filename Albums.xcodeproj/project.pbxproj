@@ -48,6 +48,11 @@
 		FAD9F50825A4837C008397F2 /* PhotoUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD9F50725A4837C008397F2 /* PhotoUIModel.swift */; };
 		FAD9F50C25A4BC87008397F2 /* MockPhotosUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD9F50B25A4BC87008397F2 /* MockPhotosUseCase.swift */; };
 		FAD9F51125A4BD4A008397F2 /* PhotosViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD9F51025A4BD4A008397F2 /* PhotosViewModelTests.swift */; };
+		FAD9F51725A4BF46008397F2 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD9F51625A4BF46008397F2 /* PhotosViewController.swift */; };
+		FAD9F52625A4C6CD008397F2 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD9F52525A4C6CD008397F2 /* PhotoCell.swift */; };
+		FAD9F54225A4E8B7008397F2 /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD9F54125A4E8B7008397F2 /* PinterestLayout.swift */; };
+		FAD9F56425A529A3008397F2 /* ImageSizeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD9F56325A529A3008397F2 /* ImageSizeHelper.swift */; };
+		FAD9F56825A52BC3008397F2 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD9F56725A52BC3008397F2 /* String+Extension.swift */; };
 		FADDFDC12596B0930094690D /* AlbumsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFDC02596B0930094690D /* AlbumsProvider.swift */; };
 		FADDFDC62596B2990094690D /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FADDFDC52596B2990094690D /* RxTest.framework */; };
 		FADDFDD92596B2F80094690D /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFDD82596B2F80094690D /* Album.swift */; };
@@ -112,6 +117,11 @@
 		FAD9F50725A4837C008397F2 /* PhotoUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUIModel.swift; sourceTree = "<group>"; };
 		FAD9F50B25A4BC87008397F2 /* MockPhotosUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPhotosUseCase.swift; sourceTree = "<group>"; };
 		FAD9F51025A4BD4A008397F2 /* PhotosViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModelTests.swift; sourceTree = "<group>"; };
+		FAD9F51625A4BF46008397F2 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		FAD9F52525A4C6CD008397F2 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		FAD9F54125A4E8B7008397F2 /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
+		FAD9F56325A529A3008397F2 /* ImageSizeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSizeHelper.swift; sourceTree = "<group>"; };
+		FAD9F56725A52BC3008397F2 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		FADDFDC02596B0930094690D /* AlbumsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsProvider.swift; sourceTree = "<group>"; };
 		FADDFDC52596B2990094690D /* RxTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADDFDD82596B2F80094690D /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
@@ -191,6 +201,7 @@
 		FA25C87B2596648700F8F903 /* Albums */ = {
 			isa = PBXGroup;
 			children = (
+				FAD9F56225A52995008397F2 /* Helpers */,
 				FA39D0A525A3D8160094B9A3 /* Miscellaneous */,
 				FA3F7F80259B10770029F6F8 /* Network */,
 				FA56E47E259919B0009ECC78 /* Extensions */,
@@ -283,6 +294,7 @@
 		FA39D0B025A46B8E0094B9A3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				FAD9F52525A4C6CD008397F2 /* PhotoCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -290,6 +302,8 @@
 		FA39D0B125A46B930094B9A3 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FAD9F51625A4BF46008397F2 /* PhotosViewController.swift */,
+				FAD9F54125A4E8B7008397F2 /* PinterestLayout.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -377,6 +391,7 @@
 				FA2570C525A364CE001373C8 /* UIView+Extension.swift */,
 				FA2570D625A39374001373C8 /* UITableView+Extension.swift */,
 				FA2570DA25A39579001373C8 /* Array+Extension.swift */,
+				FAD9F56725A52BC3008397F2 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -482,6 +497,14 @@
 				FAD9F51025A4BD4A008397F2 /* PhotosViewModelTests.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FAD9F56225A52995008397F2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FAD9F56325A529A3008397F2 /* ImageSizeHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		FADDFDBF2596B0880094690D /* Providers */ = {
@@ -731,13 +754,17 @@
 				FA3F7F8D259B131F0029F6F8 /* EndpointsAPI.swift in Sources */,
 				FA89669C259BA10D00481EC1 /* AlbumsViewModel.swift in Sources */,
 				FA39D0BD25A476040094B9A3 /* Photo.swift in Sources */,
+				FAD9F52625A4C6CD008397F2 /* PhotoCell.swift in Sources */,
 				FAD9F50825A4837C008397F2 /* PhotoUIModel.swift in Sources */,
 				FAD9F50425A48354008397F2 /* PhotosViewModel.swift in Sources */,
 				FA5086FF259D081200535DCE /* LocalAlbumsProvider.swift in Sources */,
+				FAD9F51725A4BF46008397F2 /* PhotosViewController.swift in Sources */,
 				FADDFDC12596B0930094690D /* AlbumsProvider.swift in Sources */,
 				FA2570D325A39242001373C8 /* AlbumTitleCell.swift in Sources */,
 				FA25C87D2596648700F8F903 /* AppDelegate.swift in Sources */,
+				FAD9F56425A529A3008397F2 /* ImageSizeHelper.swift in Sources */,
 				FA5086FB259BDC7300535DCE /* AlbumUIModel.swift in Sources */,
+				FAD9F54225A4E8B7008397F2 /* PinterestLayout.swift in Sources */,
 				FA56E480259919BB009ECC78 /* Rx+Extensions.swift in Sources */,
 				FA2570DB25A39579001373C8 /* Array+Extension.swift in Sources */,
 				FA2570C625A364CE001373C8 /* UIView+Extension.swift in Sources */,
@@ -748,6 +775,7 @@
 				FA25C8872596648700F8F903 /* Albums.xcdatamodeld in Sources */,
 				FADDFDD92596B2F80094690D /* Album.swift in Sources */,
 				FA2570D725A39374001373C8 /* UITableView+Extension.swift in Sources */,
+				FAD9F56825A52BC3008397F2 /* String+Extension.swift in Sources */,
 				FA39D0A725A3D81E0094B9A3 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

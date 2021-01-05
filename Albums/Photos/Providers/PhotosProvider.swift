@@ -17,7 +17,6 @@ struct PhotosProvider: PhotosProviderInterface {
         provider
             .rx
             .request(.getPhotos(page: page, albumId: albumId))
-            .debug()
             .filterSuccessfulStatusCodes()
             .map([Photo].self)
     }

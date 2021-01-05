@@ -10,6 +10,7 @@ extension UITableView {
 }
 
 extension UITableViewCell: Reusable {}
+extension UICollectionViewCell: Reusable {}
 
 protocol Reusable {
     static var identifier: String { get }
@@ -18,5 +19,17 @@ protocol Reusable {
 extension Reusable {
     static var identifier: String {
         return String(describing: self)
+    }
+}
+
+extension UICollectionView {
+    func cell<T: Reusable>(as _: T.Type, indexPath: IndexPath) -> T {
+        guard let cell = dequeueReusableCell(
+            withReuseIdentifier: T.identifier,
+            for: indexPath
+        ) as? T else {
+            fatalError("Cell has not been registered.")
+        }
+        return cell
     }
 }

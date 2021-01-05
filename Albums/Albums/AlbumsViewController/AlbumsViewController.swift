@@ -103,4 +103,19 @@ extension AlbumsViewController {
         guard isNearbyTheEnd else { return }
         eventsSubject.onNext(.loadMore(page: pageIndex + 1))
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let provider = PhotosProvider()
+        let localProvider = LocalPhotosProvider()
+        let useCase = PhotosUseCase(
+            photosProvider: provider,
+            localPhotosProvider: localProvider
+        )
+        let viewModel = PhotosViewModel(
+            albumId: 1,
+            photosUseCase: useCase
+        )
+        let viewController = PhotosViewController(viewModel: viewModel)
+        present(viewController, animated: true)
+    }
 }
