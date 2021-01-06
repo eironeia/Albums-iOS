@@ -11,6 +11,7 @@ protocol AlbumsViewModelInterface {
 extension AlbumsViewModel {
     enum Event {
         case start
+        case refresh
         case loadMore(page: UInt)
     }
 
@@ -37,7 +38,7 @@ struct AlbumsViewModel: AlbumsViewModelInterface {
         let state = event
             .flatMapLatest { event -> Observable<State> in
                 switch event {
-                case .start:
+                case .start, .refresh:
                     return getAlbumsState(page: firstPageIndex)
                 case let .loadMore(page):
                     return getAlbumsState(page: page)

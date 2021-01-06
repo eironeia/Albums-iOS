@@ -11,4 +11,3 @@ struct PhotoUIModel: Equatable {
         thumbnailUrl = photo.thumbnailUrl
     }
 }
-

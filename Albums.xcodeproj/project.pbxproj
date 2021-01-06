@@ -422,8 +422,8 @@
 		FA56E48725991C3D009ECC78 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				FA39D0C025A4773A0094B9A3 /* Photos */,
 				FA56E48625991C33009ECC78 /* Albums */,
+				FA39D0C025A4773A0094B9A3 /* Photos */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";

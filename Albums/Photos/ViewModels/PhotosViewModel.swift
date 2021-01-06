@@ -11,6 +11,7 @@ protocol PhotosViewModelInterface {
 extension PhotosViewModel {
     enum Event {
         case start
+        case refresh
         case loadMore(page: UInt)
     }
 
@@ -38,7 +39,7 @@ struct PhotosViewModel: PhotosViewModelInterface {
         let state = event
             .flatMapLatest { event -> Observable<State> in
                 switch event {
-                case .start:
+                case .start, .refresh:
                     return getPhotosState(page: firstPageIndex, albumId: albumId)
                 case let .loadMore(page):
                     return getPhotosState(page: page, albumId: albumId)

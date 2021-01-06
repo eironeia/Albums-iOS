@@ -36,6 +36,13 @@ private extension AlbumsViewController {
             AlbumTitleCell.self,
             forCellReuseIdentifier: AlbumTitleCell.identifier
         )
+
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(
+            self,
+            action: #selector(handleRefresh),
+            for: .valueChanged
+        )
     }
 
     func setupEvents() {
@@ -117,5 +124,13 @@ extension AlbumsViewController {
         )
         let viewController = PhotosViewController(viewModel: viewModel)
         navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    @objc
+    func handleRefresh() {
+        tableView.refreshControl?.endRefreshing()
+        shouldFetchMorePages = true
+        pageIndex = viewModel.firstPageIndex
+        eventsSubject.onNext(.refresh)
     }
 }

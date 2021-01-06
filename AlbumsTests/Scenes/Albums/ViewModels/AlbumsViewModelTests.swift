@@ -51,6 +51,20 @@ final class AlbumsViewModelTests: XCTestCase {
         )
     }
 
+    func test_whenRefreshEvent_thenHandleStates() {
+        subscribeScheduler(with: [.next(10, .refresh)])
+        subscribeEvents()
+
+        XCTAssertEqual(
+            stateObserver.events,
+            [
+                .next(10, .isLoading(true)),
+                .next(10, .isLoading(false)),
+                .next(10, .albums([expectedAlbumUIModel]))
+            ]
+        )
+    }
+
     func test_whenLoadMoreEvent_thenHandleStates() {
         subscribeScheduler(with: [.next(10, .loadMore(page: 2))])
         subscribeEvents()

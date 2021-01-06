@@ -50,6 +50,12 @@ private extension PhotosViewController {
             PhotoCell.self,
             forCellWithReuseIdentifier: PhotoCell.identifier
         )
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.addTarget(
+            self,
+            action: #selector(handleRefresh),
+            for: .valueChanged
+        )
 
         if let layout = collectionViewLayout as? PinterestLayout {
             layout.delegate = self
@@ -132,7 +138,6 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
         let viewModel = PhotoDetailsViewModel(
             photo: Photo(
                 albumId: 1,
@@ -144,7 +149,14 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
         )
         let viewController = PhotoDetailsViewController(viewModel: viewModel)
         present(viewController, animated: true, completion: nil)
+    }
 
+    @objc
+    func handleRefresh() {
+        collectionView.refreshControl?.endRefreshing()
+        shouldFetchMorePages = true
+        pageIndex = viewModel.firstPageIndex
+        eventsSubject.onNext(.refresh)
     }
 }
 
