@@ -1,11 +1,11 @@
 import UIKit
 
-protocol PinterestLayoutDelegate: AnyObject {
+protocol CustomPhotoLayoutDelegate: AnyObject {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat
 }
 
-class PinterestLayout: UICollectionViewLayout {
-    weak var delegate: PinterestLayoutDelegate?
+class CustomPhotoLayout: UICollectionViewLayout {
+    weak var delegate: CustomPhotoLayoutDelegate?
 
     private let numberOfColumns = 2
     private let cellPadding: CGFloat = 6
@@ -46,10 +46,12 @@ class PinterestLayout: UICollectionViewLayout {
             ) ?? 180
 
             let height = cellPadding * 2 + photoHeight
-            let frame = CGRect(x: xOffset[column],
-                               y: yOffset[column],
-                               width: columnWidth,
-                               height: height)
+            let frame = CGRect(
+                x: xOffset[column],
+                y: yOffset[column],
+                width: columnWidth,
+                height: height
+            )
             let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
 
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
@@ -68,7 +70,6 @@ class PinterestLayout: UICollectionViewLayout {
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var visibleLayoutAttributes: [UICollectionViewLayoutAttributes] = []
 
-        // Loop through the cache and look for items in the rect
         for attributes in cache {
             if attributes.frame.intersects(rect) {
                 visibleLayoutAttributes.append(attributes)

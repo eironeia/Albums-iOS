@@ -26,7 +26,7 @@ class PhotosViewController: UICollectionViewController {
         self.viewModel = viewModel
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        super.init(collectionViewLayout: PinterestLayout())
+        super.init(collectionViewLayout: CustomPhotoLayout())
     }
 
     required init?(coder: NSCoder) {
@@ -62,7 +62,7 @@ private extension PhotosViewController {
             for: .valueChanged
         )
 
-        if let layout = collectionViewLayout as? PinterestLayout {
+        if let layout = collectionViewLayout as? CustomPhotoLayout {
             layout.delegate = self
         }
     }
@@ -155,7 +155,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension PhotosViewController: PinterestLayoutDelegate {
+extension PhotosViewController: CustomPhotoLayoutDelegate {
     func collectionView(
         _ collectionView: UICollectionView,
         heightForPhotoAtIndexPath indexPath: IndexPath
