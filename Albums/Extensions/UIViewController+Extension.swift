@@ -1,7 +1,7 @@
 import UIKit
 
-extension UIViewController {
-    public func addXDismissalButton(selector: Selector) {
+public extension UIViewController {
+    func addXDismissalButton(selector: Selector) {
         let image = UIImage(named: "close-x")
         let button = UIBarButtonItem(
             image: image,
