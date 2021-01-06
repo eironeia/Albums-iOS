@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="LocalAlbum" representedClassName="LocalAlbum" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="belongsTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LocalAlbumPage" inverseName="albums" inverseEntity="LocalAlbumPage"/>
+    </entity>
+    <entity name="LocalAlbumPage" representedClassName="LocalAlbumPage" syncable="YES" codeGenerationType="class">
+        <attribute name="page" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="albums" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LocalAlbum" inverseName="belongsTo" inverseEntity="LocalAlbum"/>
+    </entity>
+    <elements>
+        <element name="LocalAlbum" positionX="-45" positionY="0" width="128" height="88"/>
+        <element name="LocalAlbumPage" positionX="-353.4884643554688" positionY="-9.615234375" width="128" height="73"/>
+    </elements>
 </model>

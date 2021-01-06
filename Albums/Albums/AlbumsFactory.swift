@@ -19,10 +19,9 @@ struct AlbumsFactory: AlbumsFactoryInterface {
         onNavigate: @escaping (AlbumsViewModel.Navigation) -> Void
     ) -> AlbumsViewController {
         let albumsProvider = AlbumsProvider()
-        let localAlbumsProvider = LocalAlbumsProvider()
         let useCase = AlbumsUseCase(
             albumsProvider: albumsProvider,
-            localAlbumsProvider: localAlbumsProvider
+            localAlbumsProvider: LocalDatabase.shared
         )
         let viewModel = AlbumsViewModel(
             albumsUseCase: useCase,

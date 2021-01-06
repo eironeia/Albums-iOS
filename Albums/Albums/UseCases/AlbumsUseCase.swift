@@ -7,13 +7,19 @@ protocol AlbumsUseCaseInterface {
 
 struct AlbumsUseCase: AlbumsUseCaseInterface {
     let albumsProvider: AlbumsProviderInterface
-    let localAlbumsProvider: LocalAlbumsProviderInterface
+    let localAlbumsProvider: AlbumsPageDatabaseInterface
 
     func getAlbums(page: UInt) -> Single<[Album]> {
-        if let localAlbums = localAlbumsProvider.getAlbums(page: page) {
+        if let albumsPageDB  = localAlbumsProvider.getAlbumsPage(page: page) {
+            let localAlbums = albumsPageDB.albums.map(Album.init(albumDB:))
             return .just(localAlbums)
         } else {
-            return albumsProvider.getAlbums(page: page)
+            return albumsProvider
+                .getAlbums(page: page)
+                .do(onSuccess: { albums in
+                    let albumPageDB = AlbumPageDB(page: page, albums: albums)
+                    localAlbumsProvider.saveAlbumsPage(albumPageDB)
+                })
         }
     }
 }
