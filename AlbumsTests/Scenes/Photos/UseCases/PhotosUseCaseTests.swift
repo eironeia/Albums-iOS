@@ -57,8 +57,8 @@ final class PhotosUseCaseTests: XCTestCase {
             url: "https://via.placeholder.com/600/54176f",
             thumbnailUrl: "https://via.placeholder.com/150/54176f"
         )
-
-        mockLocalPhotosProvider.getPhotosResponse = [mockLocalPhoto]
+        let pageDB = PhotoPageDB(page: 1, photos: [mockLocalPhoto])
+        mockLocalPhotosProvider.getPhotosPageResponse = pageDB
 
         sut = makeSUT()
         subscribeEvents()

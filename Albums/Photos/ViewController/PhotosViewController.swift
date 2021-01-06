@@ -4,6 +4,10 @@ import UIKit
 import PKHUD
 
 class PhotosViewController: UICollectionViewController {
+    deinit {
+        debugPrint("👋🏼 Bye bye \(String(describing: PhotosViewController.self))")
+    }
+
     private let eventsSubject = PublishSubject<PhotosViewModel.Event>()
     private lazy var disposeBag = DisposeBag()
     private let viewModel: PhotosViewModelInterface
@@ -78,7 +82,7 @@ private extension PhotosViewController {
             collectionView.reloadData()
         case let .nextPhotosPage(photosUIModel):
             pageIndex += 1
-            self.photosUIModel = (self.photosUIModel + photosUIModel)
+            self.photosUIModel += photosUIModel
             collectionView.reloadData()
         case let .isLoading(showLoader):
             showLoader
@@ -101,7 +105,6 @@ extension PhotosViewController {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        print(photosUIModel[indexPath.item].id)
         let cell = collectionView.cell(
             as: PhotoCell.self,
             indexPath: indexPath

@@ -55,7 +55,8 @@ final class AlbumsUseCaseTests: XCTestCase {
             title: "Title"
         )
 
-        mockLocalAlbumsProvider.getAlbumsResponse = [mockLocalAlbum]
+        let albumDB = AlbumPageDB(page: 1, albums: [mockLocalAlbum])
+        mockLocalAlbumsProvider.getAlbumsResponse = albumDB
 
         sut = makeSUT()
         subscribeEvents()

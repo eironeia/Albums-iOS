@@ -35,11 +35,9 @@ struct AlbumsFactory: AlbumsFactoryInterface {
         onNavigate: @escaping (PhotosViewModel.Navigation) -> Void
     ) -> PhotosViewController {
         let provider = PhotosProvider()
-        let localProvider = LocalPhotosProvider()
-
         let useCase = PhotosUseCase(
             photosProvider: provider,
-            localPhotosProvider: localProvider
+            localPhotosProvider: LocalDatabase.shared
         )
 
         let viewModel = PhotosViewModel(

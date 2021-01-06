@@ -1,11 +1,16 @@
 @testable import Albums
 
-final class MockLocalAlbumsProvider: LocalAlbumsProviderInterface {
-    var getAlbumsResponse: [Album]?
-    var getAlumsTimesCalled: UInt = 0
+final class MockLocalAlbumsProvider: AlbumsPageDatabaseInterface {
 
-    func getAlbums(page: UInt) -> [Album]? {
-        getAlumsTimesCalled += 1
+    var getAlbumsResponse: AlbumPageDB?
+    var getAlbumsTimesCalled: UInt = 0
+    func getAlbumsPage(page: UInt) -> AlbumPageDB? {
+        getAlbumsTimesCalled += 1
         return getAlbumsResponse
+    }
+
+    var saveAlbumsTimesCalled: UInt = 0
+    func saveAlbumsPage(_ albumPageDB: AlbumPageDB) {
+        saveAlbumsTimesCalled += 1
     }
 }

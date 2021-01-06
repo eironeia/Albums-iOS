@@ -9,5 +9,6 @@ struct LocalDatabase {
 extension LocalDatabase {
     enum KeyIdentifier: String {
         case albumsPage
+        case photosPage
     }
 }
