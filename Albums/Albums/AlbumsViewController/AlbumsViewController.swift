@@ -116,6 +116,6 @@ extension AlbumsViewController {
             photosUseCase: useCase
         )
         let viewController = PhotosViewController(viewModel: viewModel)
-        present(viewController, animated: true)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

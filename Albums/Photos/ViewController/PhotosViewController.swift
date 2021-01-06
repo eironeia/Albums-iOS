@@ -112,22 +112,40 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        let itemSize = (
-            collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)
-        ) / 2
         return CGSize(width: itemSize, height: itemSize)
     }
 
-//    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        guard !photosUIModel.isEmpty,
-//              shouldFetchMorePages else {
-//            return
-//        }
-//
-//        let isNearbyTheEnd = (photosUIModel.count - 4) == indexPath.row
-//        guard isNearbyTheEnd else { return }
-//        eventsSubject.onNext(.loadMore(page: pageIndex + 1))
-//    }
+    override func collectionView(
+        _ collectionView: UICollectionView,
+        willDisplay cell: UICollectionViewCell,
+        forItemAt indexPath: IndexPath
+    ) {
+        guard !photosUIModel.isEmpty,
+              shouldFetchMorePages else {
+            return
+        }
+
+        print(indexPath.row, photosUIModel.count - 4)
+        let isNearbyTheEnd = (photosUIModel.count - 4) == indexPath.row
+        guard isNearbyTheEnd else { return }
+        eventsSubject.onNext(.loadMore(page: pageIndex + 1))
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let viewModel = PhotoDetailsViewModel(
+            photo: Photo(
+                albumId: 1,
+                id: 1,
+                title: "tenetur minus voluptatum et",
+                url: "https://via.placeholder.com/600/c96cad",
+                thumbnailUrl: "https://via.placeholder.com/600/c96cad"
+            )
+        )
+        let viewController = PhotoDetailsViewController(viewModel: viewModel)
+        present(viewController, animated: true, completion: nil)
+
+    }
 }
 
 extension PhotosViewController: PinterestLayoutDelegate {
@@ -135,10 +153,6 @@ extension PhotosViewController: PinterestLayoutDelegate {
         _ collectionView: UICollectionView,
         heightForPhotoAtIndexPath indexPath: IndexPath
     ) -> CGFloat {
-        let itemSize = (
-            collectionView.frame.width
-                - (collectionView.contentInset.left + collectionView.contentInset.right + 10)
-        ) / 2
         let text = photosUIModel[indexPath.row].title
         let imageUrl = photosUIModel[indexPath.row].thumbnailUrl
         let url = URL(string: imageUrl)
