@@ -12,7 +12,7 @@ extension AlbumsViewModel {
     enum Event {
         case start
         case refresh
-        case selectedAlbum(albumId: Int)
+        case albumSelected(albumId: Int)
         case loadMore(page: UInt)
     }
 
@@ -48,7 +48,7 @@ struct AlbumsViewModel: AlbumsViewModelInterface {
                     return getAlbumsState(page: firstPageIndex)
                 case let .loadMore(page):
                     return getAlbumsState(page: page)
-                case let .selectedAlbum(albumId):
+                case let .albumSelected(albumId):
                     onNavigate(.photos(albumId: albumId))
                     return .just(.idle)
                 }

@@ -7,12 +7,12 @@ import XCTest
 final class AlbumsViewModelTests: XCTestCase {
     var albumUseCase: MockAlbumsUseCase!
     var expectedAlbumUIModel: AlbumUIModel!
+    var onNavigate: ((AlbumsViewModel.Navigation) -> Void)!
     var eventSubject: PublishSubject<AlbumsViewModel.Event>!
     var stateObserver: TestableObserver<AlbumsViewModel.State>!
     var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
     var sut: AlbumsViewModel!
-    var onNavigate: ((AlbumsViewModel.Navigation) -> Void)!
 
     override func setUp() {
         super.setUp()
@@ -97,14 +97,14 @@ final class AlbumsViewModelTests: XCTestCase {
         )
     }
 
-    func test_whenSelectedAlbumEvent_andNoMorePages_thenHandleStates() {
+    func test_whenAlbumSelectedEvent_andNoMorePages_thenHandleStates() {
         let expectation = self.expectation(description: "Navigate to photos")
         onNavigate = { navigation in
             XCTAssertEqual(navigation, AlbumsViewModel.Navigation.photos(albumId: 1))
             expectation.fulfill()
         }
         sut = makeSUT()
-        subscribeScheduler(with: [.next(10, .selectedAlbum(albumId: 1))])
+        subscribeScheduler(with: [.next(10, .albumSelected(albumId: 1))])
         subscribeEvents()
 
         XCTAssertEqual(

@@ -20,13 +20,36 @@ struct AlbumsCoordinator: CoordinatorInterface {
 
     func toPhotos(albumId: Int) {
         let viewController = albumsFactory
-            .makePhotosViewController(albumId: albumId)
+            .makePhotosViewController(
+                albumId: albumId,
+                onNavigate: handlePhotosViewModelNavigation
+            )
         presenter?.pushViewController(viewController, animated: true)
+    }
+
+    func toPhotoDetails(photo: Photo) {
+        let viewController = albumsFactory.makePhotoDetailsViewController(
+            photo: photo,
+            onNavigate: { navigation in
+                switch navigation {
+                case .completion:
+                    presenter?.dismiss(animated: true, completion: nil)
+                }
+            }
+        )
+        let navigationController = UINavigationController(rootViewController: viewController)
+        presenter?.present(navigationController, animated: true, completion: nil)
     }
 
     func handleAlbumsViewModelNavigation(navigation: AlbumsViewModel.Navigation) {
         switch navigation {
         case let .photos(albumId): toPhotos(albumId: albumId)
+        }
+    }
+
+    func handlePhotosViewModelNavigation(navigation: PhotosViewModel.Navigation) {
+        switch navigation {
+        case let .photoDetails(photo): toPhotoDetails(photo: photo)
         }
     }
 }

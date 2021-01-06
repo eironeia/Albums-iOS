@@ -133,23 +133,14 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
         }
 
         print(indexPath.row, photosUIModel.count - 4)
-        let isNearbyTheEnd = (photosUIModel.count - 4) == indexPath.row
+        let isNearbyTheEnd = (photosUIModel.count - 4) == indexPath.item
         guard isNearbyTheEnd else { return }
         eventsSubject.onNext(.loadMore(page: pageIndex + 1))
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let viewModel = PhotoDetailsViewModel(
-            photo: Photo(
-                albumId: 1,
-                id: 1,
-                title: "tenetur minus voluptatum et",
-                url: "https://via.placeholder.com/600/c96cad",
-                thumbnailUrl: "https://via.placeholder.com/600/c96cad"
-            )
-        )
-        let viewController = PhotoDetailsViewController(viewModel: viewModel)
-        present(viewController, animated: true, completion: nil)
+        let id = photosUIModel[indexPath.item].id
+        eventsSubject.onNext(.photoSelected(photoId: id))
     }
 
     @objc
@@ -166,8 +157,8 @@ extension PhotosViewController: PinterestLayoutDelegate {
         _ collectionView: UICollectionView,
         heightForPhotoAtIndexPath indexPath: IndexPath
     ) -> CGFloat {
-        let text = photosUIModel[indexPath.row].title
-        let imageUrl = photosUIModel[indexPath.row].thumbnailUrl
+        let text = photosUIModel[indexPath.item].title
+        let imageUrl = photosUIModel[indexPath.item].thumbnailUrl
         let url = URL(string: imageUrl)
         return PhotoCell.getHeight(
             for: text,

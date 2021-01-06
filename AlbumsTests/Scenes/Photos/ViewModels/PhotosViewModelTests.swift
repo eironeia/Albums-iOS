@@ -7,16 +7,19 @@ import XCTest
 final class PhotosViewModelTests: XCTestCase {
     var photoUseCase: MockPhotosUseCase!
     var expectedPhotoUIModel: PhotoUIModel!
+    var mockPhoto: Photo!
+    var onNavigate: ((PhotosViewModel.Navigation) -> Void)!
     var eventSubject: PublishSubject<PhotosViewModel.Event>!
     var stateObserver: TestableObserver<PhotosViewModel.State>!
     var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
     var sut: PhotosViewModel!
 
+
     override func setUp() {
         super.setUp()
         photoUseCase = MockPhotosUseCase()
-        let mockPhoto = Photo(
+        mockPhoto = Photo(
             albumId: 1,
             id: 1,
             title: "Title",
@@ -25,6 +28,7 @@ final class PhotosViewModelTests: XCTestCase {
         )
         photoUseCase.getPhotosResponse = [mockPhoto]
         expectedPhotoUIModel = PhotoUIModel(photo: mockPhoto)
+        onNavigate = { _ in }
         scheduler = TestScheduler(initialClock: 0)
         eventSubject = .init()
         stateObserver = scheduler.createObserver(PhotosViewModel.State.self)
@@ -96,11 +100,39 @@ final class PhotosViewModelTests: XCTestCase {
             ]
         )
     }
+
+    func test_whenPhotoSelectedEvent_thenHandleStates() {
+        let expectation = self.expectation(description: "Navigate to photo details")
+        onNavigate = { navigation in
+            XCTAssertEqual(
+                navigation,
+                PhotosViewModel.Navigation.photoDetails(photo: self.mockPhoto)
+            )
+            expectation.fulfill()
+        }
+        sut = makeSUT()
+        subscribeScheduler(with: [
+                            .next(10, .start),
+                            .next(20, .photoSelected(photoId: 1))
+        ])
+        subscribeEvents()
+
+        XCTAssertEqual(
+            stateObserver.events,
+            [
+                .next(10, .isLoading(true)),
+                .next(10, .isLoading(false)),
+                .next(10, .photos([expectedPhotoUIModel])),
+                .next(20, .idle)
+            ]
+        )
+        waitForExpectations(timeout: 1)
+    }
 }
 
 private extension PhotosViewModelTests {
     func makeSUT() -> PhotosViewModel {
-        PhotosViewModel(albumId: 1, photosUseCase: photoUseCase)
+        PhotosViewModel(albumId: 1, photosUseCase: photoUseCase, onNavigate: onNavigate)
     }
 
     func subscribeScheduler(with events: [Recorded<Event<PhotosViewModel.Event>>]) {
