@@ -13,7 +13,7 @@ extension LocalDatabase: AlbumsPageDatabaseInterface {
         return try? JSONDecoder().decode(AlbumPageDB.self, from: data)
     }
 
-    func saveAlbumsPage( _ albumPageDB: AlbumPageDB) {
+    func saveAlbumsPage(_ albumPageDB: AlbumPageDB) {
         let data = try? JSONEncoder().encode(albumPageDB)
         storage.set(
             data,

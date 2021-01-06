@@ -10,7 +10,5 @@ struct LocalAlbumsProvider: LocalAlbumsProviderInterface {
         return nil
     }
 
-    func saveAlbums(page: UInt, albums: [Album]) {
-        
-    }
+    func saveAlbums(page: UInt, albums: [Album]) {}
 }

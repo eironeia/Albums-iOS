@@ -10,7 +10,7 @@ struct AlbumsUseCase: AlbumsUseCaseInterface {
     let localAlbumsProvider: AlbumsPageDatabaseInterface
 
     func getAlbums(page: UInt) -> Single<[Album]> {
-        if let albumsPageDB  = localAlbumsProvider.getAlbumsPage(page: page) {
+        if let albumsPageDB = localAlbumsProvider.getAlbumsPage(page: page) {
             let localAlbums = albumsPageDB.albums.map(Album.init(albumDB:))
             return .just(localAlbums)
         } else {

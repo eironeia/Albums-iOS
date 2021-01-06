@@ -25,6 +25,7 @@ class PhotoDetailsViewController: UIViewController {
 
 private extension PhotoDetailsViewController {
     func setupUI() {
+        photoDetailsView.imageView.contentMode = .scaleAspectFit
         photoDetailsView.setup(uiModel: viewModel.photoDetailsUIModel)
         addXDismissalButton(selector: #selector(closeButtonTapped))
         view.backgroundColor = .lightGray

@@ -78,7 +78,7 @@ private extension PhotosViewController {
             collectionView.reloadData()
         case let .nextPhotosPage(photosUIModel):
             pageIndex += 1
-            self.photosUIModel += photosUIModel
+            self.photosUIModel = (self.photosUIModel + photosUIModel)
             collectionView.reloadData()
         case let .isLoading(showLoader):
             showLoader
@@ -101,11 +101,12 @@ extension PhotosViewController {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
+        print(photosUIModel[indexPath.item].id)
         let cell = collectionView.cell(
             as: PhotoCell.self,
             indexPath: indexPath
         )
-        let photoUIModel = photosUIModel[indexPath.row]
+        let photoUIModel = photosUIModel[indexPath.item]
         cell.setup(uiModel: photoUIModel)
         return cell
     }
@@ -132,7 +133,6 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
             return
         }
 
-        print(indexPath.row, photosUIModel.count - 4)
         let isNearbyTheEnd = (photosUIModel.count - 4) == indexPath.item
         guard isNearbyTheEnd else { return }
         eventsSubject.onNext(.loadMore(page: pageIndex + 1))

@@ -19,7 +19,6 @@
 		FA25C87D2596648700F8F903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25C87C2596648700F8F903 /* AppDelegate.swift */; };
 		FA25C87F2596648700F8F903 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25C87E2596648700F8F903 /* SceneDelegate.swift */; };
 		FA25C8812596648700F8F903 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25C8802596648700F8F903 /* AlbumsViewController.swift */; };
-		FA25C8872596648700F8F903 /* Albums.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA25C8852596648700F8F903 /* Albums.xcdatamodeld */; };
 		FA25C8892596648800F8F903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA25C8882596648800F8F903 /* Assets.xcassets */; };
 		FA25C88C2596648800F8F903 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA25C88A2596648800F8F903 /* LaunchScreen.storyboard */; };
 		FA25C8972596648800F8F903 /* AlbumsProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25C8962596648800F8F903 /* AlbumsProviderTests.swift */; };
@@ -95,7 +94,6 @@
 		FA25C87C2596648700F8F903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA25C87E2596648700F8F903 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FA25C8802596648700F8F903 /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
-		FA25C8862596648700F8F903 /* Albums.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Albums.xcdatamodel; sourceTree = "<group>"; };
 		FA25C8882596648800F8F903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA25C88B2596648800F8F903 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA25C88D2596648800F8F903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -252,7 +250,6 @@
 				FA25C8882596648800F8F903 /* Assets.xcassets */,
 				FA25C88A2596648800F8F903 /* LaunchScreen.storyboard */,
 				FA25C88D2596648800F8F903 /* Info.plist */,
-				FA25C8852596648700F8F903 /* Albums.xcdatamodeld */,
 			);
 			path = Albums;
 			sourceTree = "<group>";
@@ -868,7 +865,6 @@
 				FA1BA4B625A6384600029F59 /* AlbumPageDB.swift in Sources */,
 				FA3F7F89259B118A0029F6F8 /* JSONDataParsingHelper.swift in Sources */,
 				FAD9F58825A5B375008397F2 /* AlbumsCoordinator.swift in Sources */,
-				FA25C8872596648700F8F903 /* Albums.xcdatamodeld in Sources */,
 				FADDFDD92596B2F80094690D /* Album.swift in Sources */,
 				FA2570D725A39374001373C8 /* UITableView+Extension.swift in Sources */,
 				FAD9F56825A52BC3008397F2 /* String+Extension.swift in Sources */,
@@ -1151,19 +1147,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		FA25C8852596648700F8F903 /* Albums.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				FA25C8862596648700F8F903 /* Albums.xcdatamodel */,
-			);
-			currentVersion = FA25C8862596648700F8F903 /* Albums.xcdatamodel */;
-			path = Albums.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = FA25C8712596648700F8F903 /* Project object */;
 }
