@@ -3,7 +3,7 @@ import UIKit
 final class AlbumTitleCell: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .black
         return label
     }()
@@ -19,7 +19,7 @@ final class AlbumTitleCell: UITableViewCell {
     }
 
     func setup(uiModel: AlbumUIModel) {
-        titleLabel.text = uiModel.title
+        titleLabel.text = "🖼 \(uiModel.title)"
     }
 }
 

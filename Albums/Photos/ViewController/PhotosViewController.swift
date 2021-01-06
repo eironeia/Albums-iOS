@@ -39,6 +39,7 @@ class PhotosViewController: UICollectionViewController {
 
 private extension PhotosViewController {
     func setupUI() {
+        title = "Photos"
         collectionView.backgroundColor = .white
         collectionView.contentInset = UIEdgeInsets(
             top: Constants.Spacing.double,

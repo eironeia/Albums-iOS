@@ -30,6 +30,8 @@ class AlbumsViewController: UITableViewController {
 
 private extension AlbumsViewController {
     func setupUI() {
+        title = "Albums"
+        navigationController?.navigationBar.prefersLargeTitles = true
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = .white
         tableView.register(
@@ -112,18 +114,9 @@ extension AlbumsViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let provider = PhotosProvider()
-        let localProvider = LocalPhotosProvider()
-        let useCase = PhotosUseCase(
-            photosProvider: provider,
-            localPhotosProvider: localProvider
-        )
-        let viewModel = PhotosViewModel(
-            albumId: 1,
-            photosUseCase: useCase
-        )
-        let viewController = PhotosViewController(viewModel: viewModel)
-        navigationController?.pushViewController(viewController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
+        let albumId = albumsUIModel[indexPath.row].id
+        eventsSubject.onNext(.selectedAlbum(albumId: albumId))
     }
 
     @objc

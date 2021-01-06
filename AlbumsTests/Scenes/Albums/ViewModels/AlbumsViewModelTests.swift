@@ -12,6 +12,7 @@ final class AlbumsViewModelTests: XCTestCase {
     var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
     var sut: AlbumsViewModel!
+    var onNavigate: ((AlbumsViewModel.Navigation) -> Void)!
 
     override func setUp() {
         super.setUp()
@@ -23,6 +24,7 @@ final class AlbumsViewModelTests: XCTestCase {
         )
         albumUseCase.getAlbumsResponse = [album]
         expectedAlbumUIModel = AlbumUIModel(album: album)
+        onNavigate = { _ in }
         scheduler = TestScheduler(initialClock: 0)
         eventSubject = .init()
         stateObserver = scheduler.createObserver(AlbumsViewModel.State.self)
@@ -94,11 +96,33 @@ final class AlbumsViewModelTests: XCTestCase {
             ]
         )
     }
+
+    func test_whenSelectedAlbumEvent_andNoMorePages_thenHandleStates() {
+        let expectation = self.expectation(description: "Navigate to photos")
+        onNavigate = { navigation in
+            XCTAssertEqual(navigation, AlbumsViewModel.Navigation.photos(albumId: 1))
+            expectation.fulfill()
+        }
+        sut = makeSUT()
+        subscribeScheduler(with: [.next(10, .selectedAlbum(albumId: 1))])
+        subscribeEvents()
+
+        XCTAssertEqual(
+            stateObserver.events,
+            [
+                .next(10, .idle)
+            ]
+        )
+        waitForExpectations(timeout: 1)
+    }
 }
 
 private extension AlbumsViewModelTests {
     func makeSUT() -> AlbumsViewModel {
-        AlbumsViewModel(albumsUseCase: albumUseCase)
+        AlbumsViewModel(
+            albumsUseCase: albumUseCase,
+            onNavigate: onNavigate
+        )
     }
 
     func subscribeScheduler(with events: [Recorded<Event<AlbumsViewModel.Event>>]) {

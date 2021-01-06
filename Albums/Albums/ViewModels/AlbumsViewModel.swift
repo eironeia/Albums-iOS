@@ -12,6 +12,7 @@ extension AlbumsViewModel {
     enum Event {
         case start
         case refresh
+        case selectedAlbum(albumId: Int)
         case loadMore(page: UInt)
     }
 
@@ -22,11 +23,16 @@ extension AlbumsViewModel {
         case noMorePages
         case idle
     }
+
+    enum Navigation: Equatable {
+        case photos(albumId: Int)
+    }
 }
 
 struct AlbumsViewModel: AlbumsViewModelInterface {
     // MARK: - Dependencies
     let albumsUseCase: AlbumsUseCaseInterface
+    let onNavigate: (Navigation) -> Void
 
     // MARK: - Stored properties
     let firstPageIndex: UInt = 1
@@ -42,6 +48,9 @@ struct AlbumsViewModel: AlbumsViewModelInterface {
                     return getAlbumsState(page: firstPageIndex)
                 case let .loadMore(page):
                     return getAlbumsState(page: page)
+                case let .selectedAlbum(albumId):
+                    onNavigate(.photos(albumId: albumId))
+                    return .just(.idle)
                 }
             }
 

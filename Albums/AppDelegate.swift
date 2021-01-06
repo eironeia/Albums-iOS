@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 
+// swiftlint:disable line_length
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
@@ -18,21 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
 
-//        let coordinator = PlacesCoordinator(
-//            presenter: navigationController,
-//            viewControllerFactory: PlacesViewControllerFactory()
-//        )
-//        coordinator.toPlaces()
-        let albumsProvider = AlbumsProvider()
-        let localAlbumsProvider = LocalAlbumsProvider()
-        let useCase = AlbumsUseCase(
-            albumsProvider: albumsProvider,
-            localAlbumsProvider: localAlbumsProvider
+        let coordinator = AlbumsCoordinator(
+            presenter: navigationController,
+            albumsFactory: AlbumsFactory()
         )
-        let viewModel = AlbumsViewModel(albumsUseCase: useCase)
-        let viewController = AlbumsViewController(viewModel: viewModel)
-        navigationController.pushViewController(viewController, animated: true)
-
+        coordinator.start()
         return true
     }
 
